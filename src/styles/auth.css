@@ -1,0 +1,116 @@
+/* ==========================================================================
+   Login / Cadastro — card de 440px sobre fundo preto (SPEC §8.1 + prints)
+   ========================================================================== */
+@layer components {
+  .auth-page {
+    @apply flex min-h-dvh flex-col items-center bg-bg px-4 py-8;
+    background-image: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(108, 92, 231, 0.07), transparent 70%);
+  }
+
+  .auth-page__main {
+    @apply my-auto w-full max-w-auth;
+  }
+
+  .auth-page__footer {
+    @apply pt-6 text-center text-xs text-text-muted;
+  }
+
+  .auth-card {
+    @apply rounded-2xl border border-white/[0.06] bg-[#101011] p-6 shadow-modal sm:p-8;
+  }
+
+  .auth-card--shake {
+    @apply animate-shake;
+  }
+
+  .auth-card__brand {
+    @apply mb-7 flex justify-center;
+  }
+
+  .auth-card__tabs {
+    @apply mb-6;
+  }
+
+  .auth-form {
+    @apply flex flex-col gap-4;
+  }
+
+  .auth-form__submit {
+    @apply mt-2;
+  }
+
+  /* --- PasswordStrength --- */
+  .password-strength {
+    @apply flex flex-col gap-2;
+  }
+
+  .password-strength__header {
+    @apply flex items-center justify-between text-[11px];
+  }
+
+  .password-strength__title,
+  .password-strength__level {
+    @apply text-text-muted;
+  }
+
+  .password-strength__level {
+    @apply font-medium;
+  }
+
+  .password-strength__level--danger {
+    @apply text-danger;
+  }
+
+  .password-strength__level--warning {
+    @apply text-warning;
+  }
+
+  .password-strength__level--success {
+    @apply text-success;
+  }
+
+  .password-strength__bars {
+    @apply grid grid-cols-4 gap-1.5;
+  }
+
+  .password-strength__bar {
+    @apply h-1 rounded-full bg-track transition-colors duration-200;
+  }
+
+  .password-strength__bar--danger {
+    @apply bg-danger;
+  }
+
+  .password-strength__bar--warning {
+    @apply bg-warning;
+  }
+
+  .password-strength__bar--success {
+    @apply bg-success;
+  }
+
+  .password-strength__rules {
+    @apply mt-1 grid grid-cols-2 gap-x-4 gap-y-1.5;
+  }
+
+  .password-strength__rule {
+    @apply flex items-center gap-2 text-[11px] text-text-muted transition-colors duration-150;
+  }
+
+  .password-strength__rule--met {
+    @apply text-text-secondary;
+  }
+
+  .password-strength__dot {
+    @apply flex h-3 w-3 shrink-0 items-center justify-center rounded-full border border-white/20 transition duration-150;
+  }
+
+  .password-strength__rule--met .password-strength__dot {
+    @apply border-success bg-success text-black;
+  }
+
+  .password-strength__check {
+    @apply h-2 w-2;
+    stroke-width: 4;
+  }
+}

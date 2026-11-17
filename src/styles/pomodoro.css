@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Pomodoro: anel, controles (as abas usam o SegmentedControl)
+   Anel: 180px na Visão Geral (sm) e 260px na página Foco (lg)
+   ========================================================================== */
+@layer components {
+  .pomodoro-ring {
+    @apply relative flex shrink-0 items-center justify-center;
+  }
+
+  .pomodoro-ring--sm {
+    @apply h-[180px] w-[180px];
+  }
+
+  .pomodoro-ring--lg {
+    @apply h-[260px] w-[260px];
+  }
+
+  /* O SVG gira -90° para o arco começar no topo e correr no sentido horário */
+  .pomodoro-ring__svg {
+    @apply absolute inset-0 h-full w-full -rotate-90;
+  }
+
+  .pomodoro-ring__track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-width: 7;
+  }
+
+  .pomodoro-ring__progress {
+    fill: none;
+    stroke: #7b6cf6;
+    stroke-width: 7;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear;
+    filter: drop-shadow(0 0 6px rgba(108, 92, 231, 0.75));
+  }
+
+  .pomodoro-ring__content {
+    @apply relative flex flex-col items-center;
+  }
+
+  .pomodoro-ring__time {
+    @apply font-semibold leading-none tabular-nums text-text;
+  }
+
+  .pomodoro-ring--sm .pomodoro-ring__time {
+    @apply text-[32px];
+  }
+
+  .pomodoro-ring--lg .pomodoro-ring__time {
+    @apply text-timer-lg;
+  }
+
+  .pomodoro-ring__status {
+    @apply mt-3 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em];
+  }
+
+  .pomodoro-ring__status--success {
+    @apply text-success;
+  }
+
+  .pomodoro-ring__status--warning {
+    @apply text-warning;
+  }
+
+  .pomodoro-ring__status-dot {
+    @apply h-1.5 w-1.5 rounded-full bg-current;
+  }
+
+  .pomodoro-ring__sublabel {
+    @apply mt-1.5 text-[11px] text-text-muted;
+  }
+
+  .timer-controls {
+    @apply flex items-center justify-center gap-2.5;
+  }
+}

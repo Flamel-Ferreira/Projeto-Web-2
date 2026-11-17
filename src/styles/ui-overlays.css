@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Modal e Toast
+   ========================================================================== */
+@layer components {
+  /* --- Modal --- */
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex animate-fade-in items-center justify-center overflow-y-auto bg-black/70 p-4 backdrop-blur-sm;
+  }
+
+  .modal {
+    @apply relative flex max-h-[calc(100dvh-2rem)] w-full animate-pop-in flex-col rounded-modal border border-white/[0.08] bg-surface shadow-modal outline-none;
+  }
+
+  .modal--sm {
+    @apply max-w-sm;
+  }
+
+  .modal--md {
+    @apply max-w-[29.5rem];
+  }
+
+  .modal--lg {
+    @apply max-w-2xl;
+  }
+
+  .modal__header {
+    @apply flex items-start justify-between gap-4 px-6 pb-5 pt-6;
+  }
+
+  .modal__heading {
+    @apply min-w-0;
+  }
+
+  .modal__title {
+    @apply text-base font-semibold text-text;
+  }
+
+  .modal__description {
+    @apply mt-1 text-xs leading-relaxed text-text-secondary;
+  }
+
+  .modal__body {
+    @apply min-h-0 flex-1 overflow-y-auto px-6 pb-6;
+  }
+
+  .modal__footer {
+    @apply flex items-center justify-end gap-3 border-t border-white/5 px-6 py-4;
+  }
+
+  /* --- Toast --- */
+  .toast-viewport {
+    @apply pointer-events-none fixed right-4 top-4 z-[60] flex w-[min(22.5rem,calc(100vw-2rem))] flex-col gap-2;
+  }
+
+  .toast {
+    @apply pointer-events-auto relative flex animate-toast-in items-center gap-3 overflow-hidden rounded-xl border border-white/[0.08] bg-surface-2 py-3 pl-3.5 pr-2 shadow-popover;
+  }
+
+  .toast__icon {
+    @apply h-[18px] w-[18px] shrink-0;
+  }
+
+  .toast__icon--success {
+    @apply text-success;
+  }
+
+  .toast__icon--error {
+    @apply text-danger;
+  }
+
+  .toast__icon--info {
+    @apply text-primary-light;
+  }
+
+  .toast__message {
+    @apply min-w-0 flex-1 text-[13px] leading-snug text-text;
+  }
+
+  /* Barra do auto-dismiss: encolhe da esquerda para a direita durante `--toast-duration` */
+  .toast__progress {
+    @apply absolute inset-x-0 bottom-0 h-0.5 origin-left animate-toast-progress;
+  }
+
+  .toast__progress--success {
+    @apply bg-success;
+  }
+
+  .toast__progress--error {
+    @apply bg-danger;
+  }
+
+  .toast__progress--info {
+    @apply bg-primary-light;
+  }
+}

@@ -1,0 +1,143 @@
+/* ==========================================================================
+   Visão Geral — cabeçalho, grid de 3 cards e faixa da citação
+   Grid: 1 coluna (mobile) · 2 (md) · 3 em xl (1.05fr 1fr 1fr) · gap 20px
+   ========================================================================== */
+@layer components {
+  .overview-header {
+    @apply mb-8;
+  }
+
+  .overview-header__eyebrow {
+    @apply flex items-center gap-2;
+  }
+
+  .overview-grid {
+    @apply grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-[1.05fr_1fr_1fr];
+  }
+
+  .overview-card {
+    @apply flex min-h-card flex-col rounded-card border border-border bg-surface p-6;
+  }
+
+  .overview-card__header {
+    @apply mb-5 flex items-start gap-3;
+  }
+
+  .overview-card__icon {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-xl;
+  }
+
+  .overview-card__icon--primary {
+    @apply bg-primary-soft text-primary-light;
+  }
+
+  .overview-card__icon--success {
+    @apply bg-success-soft text-success;
+  }
+
+  .overview-card__icon-svg {
+    @apply h-4 w-4;
+  }
+
+  .overview-card__titles {
+    @apply min-w-0 flex-1;
+  }
+
+  .overview-card__title {
+    @apply text-[15px] font-semibold leading-tight text-text;
+  }
+
+  .overview-card__description {
+    @apply mt-1 text-xs leading-snug text-text-muted;
+  }
+
+  .overview-card__badge {
+    @apply shrink-0;
+  }
+
+  .overview-card__body {
+    @apply flex flex-1 flex-col gap-4;
+  }
+
+  .overview-card__body--focus {
+    @apply items-center gap-5;
+  }
+
+  .overview-card__body--focus > :first-child {
+    @apply w-full;
+  }
+
+  .overview-card__footer {
+    @apply mt-5 flex items-center gap-2 border-t border-white/5 pt-4 text-[11px] text-text-muted;
+  }
+
+  /* --- listas de tarefas e hábitos --- */
+  .overview-list {
+    @apply flex flex-col gap-2;
+  }
+
+  .overview-item {
+    @apply flex items-start gap-3 rounded-xl border border-white/[0.06] bg-surface-2 px-3.5 py-3;
+  }
+
+  .overview-item--center {
+    @apply items-center;
+  }
+
+  .overview-item__content {
+    @apply min-w-0 flex-1;
+  }
+
+  .overview-item__title {
+    @apply truncate text-[13px] font-semibold text-text;
+  }
+
+  .overview-item__content .overview-item__title {
+    @apply mb-1.5;
+  }
+
+  .overview-item__title--done {
+    @apply text-text-muted line-through;
+  }
+
+  .overview-consistency {
+    @apply flex flex-col gap-2;
+  }
+
+  .overview-consistency__header {
+    @apply flex items-baseline justify-between text-xs;
+  }
+
+  .overview-consistency__label {
+    @apply font-medium text-text-secondary;
+  }
+
+  .overview-consistency__value {
+    @apply font-semibold tabular-nums text-text;
+  }
+
+  .overview-card__body > .empty-state {
+    @apply flex-1;
+  }
+
+  /* --- faixa da citação --- */
+  .quote-bar {
+    @apply mt-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 rounded-card border border-border bg-surface/60 px-6 py-5;
+  }
+
+  .quote-bar__quote {
+    @apply min-w-0;
+  }
+
+  .quote-bar__text {
+    @apply text-[13px] italic text-text-secondary;
+  }
+
+  .quote-bar__author {
+    @apply mt-1 text-[11px] text-text-muted;
+  }
+
+  .quote-bar__version {
+    @apply text-[11px] text-text-muted;
+  }
+}

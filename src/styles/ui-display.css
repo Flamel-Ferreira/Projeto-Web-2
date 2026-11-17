@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Badge, ProgressBar, EmptyState e PageHeader
+   ========================================================================== */
+@layer components {
+  /* --- Badge: sempre em caixa alta (o texto é passado normal) --- */
+  .badge {
+    @apply inline-flex items-center gap-1 whitespace-nowrap rounded-badge border font-semibold uppercase leading-none tracking-[0.06em];
+  }
+
+  .badge--sm {
+    @apply px-2 py-1 text-[10px];
+  }
+
+  .badge--md {
+    @apply px-2.5 py-1.5 text-[11px];
+  }
+
+  .badge--purple {
+    @apply border-primary/25 bg-primary-soft text-primary-light;
+  }
+
+  .badge--pink {
+    @apply border-pink/25 bg-pink/10 text-pink;
+  }
+
+  .badge--green {
+    @apply border-success/25 bg-success-soft text-success;
+  }
+
+  .badge--slate {
+    @apply border-slate/25 bg-slate/10 text-slate;
+  }
+
+  .badge--amber {
+    @apply border-warning/25 bg-warning/10 text-warning;
+  }
+
+  .badge--neutral {
+    @apply border-white/10 bg-white/5 text-text-secondary;
+  }
+
+  /* --- ProgressBar: largura vem da variável --progress (0–100) --- */
+  .progress {
+    @apply h-1.5 w-full overflow-hidden rounded-full bg-white/5;
+  }
+
+  .progress__fill {
+    @apply h-full rounded-full transition-[width] duration-300 ease-out;
+    width: calc(var(--progress, 0) * 1%);
+  }
+
+  .progress__fill--success {
+    @apply bg-success;
+  }
+
+  .progress__fill--primary {
+    @apply bg-primary;
+  }
+
+  /* --- EmptyState --- */
+  .empty-state {
+    @apply flex flex-col items-center justify-center text-center;
+  }
+
+  .empty-state--card {
+    @apply min-h-[16rem] rounded-card border border-border bg-surface px-6 py-14;
+  }
+
+  .empty-state--inline {
+    @apply h-full min-h-[12rem] rounded-xl border border-white/[0.06] bg-white/[0.015] px-5 py-8;
+  }
+
+  .empty-state__tile {
+    @apply mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-surface-3 text-text-muted;
+  }
+
+  .empty-state__icon {
+    @apply h-5 w-5;
+  }
+
+  .empty-state__icon--bare {
+    @apply mb-3 text-text-muted;
+  }
+
+  .empty-state__title {
+    @apply text-[13px] font-semibold text-text;
+  }
+
+  .empty-state__description {
+    @apply mt-1 max-w-[18rem] text-xs leading-relaxed text-text-muted;
+  }
+
+  .empty-state--card .empty-state__description {
+    @apply max-w-sm;
+  }
+
+  .empty-state__action {
+    @apply mt-5;
+  }
+
+  .empty-state--inline .empty-state__action {
+    @apply mt-4;
+  }
+
+  /* --- PageHeader --- */
+  .page-header {
+    @apply mb-6 flex flex-wrap items-start justify-between gap-x-6 gap-y-4;
+  }
+
+  .page-header__text {
+    @apply min-w-0;
+  }
+
+  .page-header__eyebrow {
+    @apply mb-1.5 text-eyebrow font-medium uppercase text-text-muted;
+  }
+
+  .page-header__title {
+    @apply text-page-title text-text lg:text-page-title-lg;
+  }
+
+  .page-header__subtitle {
+    @apply mt-1.5 text-sm text-text-secondary;
+  }
+
+  .page-header__action {
+    @apply shrink-0;
+  }
+}

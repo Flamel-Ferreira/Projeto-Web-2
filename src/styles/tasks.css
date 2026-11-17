@@ -1,0 +1,29 @@
+/* ==========================================================================
+   TaskBadges — selo da categoria + ponto e rótulo da prioridade
+   (o Lote 5 acrescenta aqui os estilos do Kanban)
+   ========================================================================== */
+@layer components {
+  .task-badges {
+    @apply flex flex-wrap items-center gap-2;
+  }
+
+  .task-priority {
+    @apply inline-flex items-center gap-1.5 text-[11px] text-text-muted;
+  }
+
+  .task-priority__dot {
+    @apply h-1.5 w-1.5 shrink-0 rounded-full;
+  }
+
+  .task-priority__dot--slate {
+    @apply bg-prio-low;
+  }
+
+  .task-priority__dot--purple {
+    @apply bg-prio-medium;
+  }
+
+  .task-priority__dot--pink {
+    @apply bg-prio-high;
+  }
+}

@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Checkbox — input nativo escondido + caixa 16px; área de toque de ~32px
+   ========================================================================== */
+@layer components {
+  .check {
+    @apply relative -m-2 inline-flex shrink-0 cursor-pointer p-2;
+  }
+
+  .check__input {
+    @apply sr-only;
+  }
+
+  .check__box {
+    @apply flex h-4 w-4 items-center justify-center rounded-[5px] border border-[#3A3A40] bg-field text-black transition duration-150 ease-out;
+  }
+
+  .check:hover .check__box {
+    @apply border-[#55555C];
+  }
+
+  .check__icon {
+    @apply h-3 w-3 opacity-0 transition-opacity duration-150;
+    stroke-width: 3;
+  }
+
+  .check__input:checked + .check__box {
+    @apply border-success bg-success;
+  }
+
+  .check__input:checked + .check__box .check__icon {
+    @apply opacity-100;
+  }
+
+  .check__input:focus-visible + .check__box {
+    @apply ring-2 ring-primary/60 ring-offset-2 ring-offset-surface-2;
+  }
+
+  .check__input:disabled + .check__box {
+    @apply cursor-not-allowed opacity-50;
+  }
+}

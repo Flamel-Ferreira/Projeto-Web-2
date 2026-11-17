@@ -1,0 +1,239 @@
+/* ==========================================================================
+   Layout: AppShell, Sidebar, Brand, NavItem, ProfileMenu e MobileTopbar
+   Sidebar fixa de 256px em ≥ lg; drawer de 280px + overlay abaixo disso.
+   ========================================================================== */
+@layer components {
+  /* --- "Pular para o conteúdo": invisível até receber foco por teclado --- */
+  .skip-link {
+    @apply sr-only;
+  }
+
+  .skip-link:focus {
+    @apply not-sr-only fixed left-4 top-4 z-[70] rounded-control border border-white/10 bg-surface-3 px-4 py-2 text-sm font-medium text-text;
+  }
+
+  /* --- AppShell --- */
+  .app-shell {
+    @apply min-h-dvh bg-bg;
+  }
+
+  .app-shell__overlay {
+    @apply fixed inset-0 z-30 animate-fade-in bg-black/60 lg:hidden;
+  }
+
+  /* Fechado no mobile: fora da tela E `visibility: hidden` (não recebe Tab). */
+  .app-shell__sidebar {
+    @apply invisible fixed inset-y-0 left-0 z-40 flex w-drawer max-w-[85vw] -translate-x-full flex-col border-r border-white/[0.06] bg-sidebar lg:visible lg:w-sidebar lg:max-w-none lg:translate-x-0;
+    transition:
+      transform 200ms ease-out,
+      visibility 0s linear 200ms;
+  }
+
+  .app-shell__sidebar--open {
+    @apply visible translate-x-0;
+    transition:
+      transform 200ms ease-out,
+      visibility 0s;
+  }
+
+  @media (min-width: 1024px) {
+    .app-shell__sidebar {
+      transition: none;
+    }
+  }
+
+  .app-shell__main {
+    @apply min-h-dvh lg:pl-sidebar;
+  }
+
+  .app-shell__content {
+    @apply mx-auto w-full max-w-content px-6 pb-12 pt-8 outline-none lg:px-10;
+  }
+
+  /* --- MobileTopbar --- */
+  .mobile-topbar {
+    @apply sticky top-0 z-20 flex h-14 items-center gap-2 border-b border-white/[0.06] bg-sidebar/90 px-3 backdrop-blur lg:hidden;
+  }
+
+  /* --- Sidebar --- */
+  .sidebar {
+    @apply flex h-full min-h-0 flex-col px-4 pb-3 pt-5;
+  }
+
+  .sidebar__header {
+    @apply mb-6 flex items-center justify-between gap-2 px-2;
+  }
+
+  .sidebar__close {
+    @apply lg:hidden;
+  }
+
+  .sidebar__nav {
+    @apply min-h-0 flex-1 overflow-y-auto;
+  }
+
+  .sidebar__section-label {
+    @apply mb-2 px-3 text-eyebrow font-medium uppercase text-text-muted;
+  }
+
+  .sidebar__list {
+    @apply flex flex-col gap-0.5;
+  }
+
+  .sidebar__footer {
+    @apply mt-4 border-t border-white/[0.06] pt-3;
+  }
+
+  .sidebar__version {
+    @apply mt-2 px-2 text-[10px] text-text-muted;
+  }
+
+  /* --- NavItem: só texto, pílula no ativo (D3) --- */
+  .nav-item {
+    @apply flex min-h-[2.5rem] items-center rounded-control px-3 text-sm font-medium text-text-secondary transition duration-150 ease-out;
+  }
+
+  .nav-item:hover {
+    @apply bg-white/5 text-text;
+  }
+
+  .nav-item--active,
+  .nav-item--active:hover {
+    @apply bg-surface-3 text-text;
+  }
+
+  /* --- Brand --- */
+  .brand {
+    @apply flex items-center gap-3;
+  }
+
+  .brand--vertical {
+    @apply flex-col text-center;
+  }
+
+  .brand__logo {
+    @apply flex shrink-0 items-center justify-center rounded-xl bg-gradient-logo shadow-logo-glow;
+  }
+
+  .brand--sm .brand__logo {
+    @apply h-8 w-8;
+  }
+
+  .brand--md .brand__logo {
+    @apply h-11 w-11;
+  }
+
+  .brand__icon {
+    @apply text-white;
+  }
+
+  .brand--sm .brand__icon {
+    @apply h-4 w-4;
+  }
+
+  .brand--md .brand__icon {
+    @apply h-[22px] w-[22px];
+  }
+
+  .brand__text {
+    @apply flex min-w-0 flex-col;
+  }
+
+  .brand--vertical .brand__text {
+    @apply items-center;
+  }
+
+  .brand__name {
+    @apply font-semibold leading-tight tracking-tight text-text;
+  }
+
+  .brand--sm .brand__name {
+    @apply text-sm;
+  }
+
+  .brand--md .brand__name {
+    @apply text-2xl;
+  }
+
+  .brand__tagline {
+    @apply mt-0.5 font-medium uppercase text-text-muted;
+  }
+
+  .brand--sm .brand__tagline {
+    @apply text-[9px] tracking-[0.2em];
+  }
+
+  .brand--md .brand__tagline {
+    @apply mt-1 text-[10px] tracking-[0.25em];
+  }
+
+  /* --- ProfileMenu --- */
+  .profile-menu {
+    @apply relative;
+  }
+
+  .profile-menu__trigger {
+    @apply flex w-full items-center gap-3 rounded-xl border border-transparent px-2.5 py-2 text-left transition duration-150 ease-out;
+  }
+
+  .profile-menu__trigger:hover,
+  .profile-menu__trigger[aria-expanded='true'] {
+    @apply border-white/[0.06] bg-surface-2;
+  }
+
+  .profile-menu__avatar {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-logo text-sm font-semibold text-white;
+  }
+
+  .profile-menu__info {
+    @apply flex min-w-0 flex-1 flex-col;
+  }
+
+  .profile-menu__name {
+    @apply truncate text-xs font-semibold text-text;
+  }
+
+  .profile-menu__plan {
+    @apply truncate text-[11px] text-text-muted;
+  }
+
+  .profile-menu__chevron {
+    @apply h-4 w-4 shrink-0 text-text-muted transition-transform duration-150;
+  }
+
+  .profile-menu__trigger[aria-expanded='true'] .profile-menu__chevron {
+    @apply rotate-180;
+  }
+
+  .profile-menu__popover {
+    @apply absolute inset-x-0 bottom-full mb-2 animate-pop-in overflow-hidden rounded-xl border border-white/[0.08] bg-surface-2 shadow-popover;
+  }
+
+  .profile-menu__identity {
+    @apply border-b border-white/[0.06] px-3.5 py-3;
+  }
+
+  .profile-menu__popover-name {
+    @apply truncate text-xs font-semibold text-text;
+  }
+
+  .profile-menu__popover-plan {
+    @apply truncate text-[11px] text-text-muted;
+  }
+
+  .profile-menu__item {
+    @apply flex w-full items-center gap-2 px-3.5 py-2.5 text-left text-xs font-medium text-danger transition duration-150 ease-out;
+  }
+
+  .profile-menu__item:hover {
+    @apply bg-danger/10;
+  }
+
+  .profile-menu__item:focus-visible {
+    @apply bg-danger/10 outline-none ring-2 ring-inset ring-danger/40 ring-offset-0;
+  }
+
+  .profile-menu__item-icon {
+    @apply h-3.5 w-3.5 shrink-0;
+  }
+}

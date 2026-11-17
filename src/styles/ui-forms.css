@@ -1,0 +1,161 @@
+/* ==========================================================================
+   Campos de formulário: Input, Select, FieldLabel e SegmentedControl
+   Campo: 44px de altura, raio 10px, borda violeta + halo no foco (prints do login)
+   ========================================================================== */
+@layer components {
+  /* Espaçamento padrão entre campos dentro de modais e formulários */
+  .form-stack {
+    @apply flex flex-col gap-5;
+  }
+
+  .field {
+    @apply w-full;
+  }
+
+  .field__label-row {
+    @apply mb-1.5 flex items-baseline justify-between gap-2;
+  }
+
+  .field__label {
+    @apply text-xs font-medium text-text-secondary;
+  }
+
+  .field__label-hint {
+    @apply text-micro text-text-muted;
+  }
+
+  .field__control {
+    @apply relative;
+  }
+
+  .field__icon {
+    @apply pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted;
+  }
+
+  .field__chevron {
+    @apply pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted;
+  }
+
+  .field__input {
+    @apply h-field w-full rounded-control border border-field-border bg-field px-3.5 text-sm text-text transition duration-150 ease-out;
+  }
+
+  .field__input:hover:not(:disabled):not(:focus) {
+    @apply border-[#34343A];
+  }
+
+  .field__input:focus {
+    @apply border-primary/70;
+  }
+
+  .field__input:focus-visible {
+    @apply outline-none ring-2 ring-primary/30 ring-offset-0;
+  }
+
+  .field__input:disabled {
+    @apply cursor-not-allowed opacity-60;
+  }
+
+  .field__input--icon {
+    @apply pl-10;
+  }
+
+  .field__input--select {
+    @apply cursor-pointer appearance-none pr-10;
+  }
+
+  .field__input--select option {
+    @apply bg-surface text-text;
+  }
+
+  .field__input--multiline {
+    @apply h-auto min-h-[7rem] resize-y py-3 leading-relaxed;
+  }
+
+  .field__input--mono {
+    @apply font-mono text-[13px];
+  }
+
+  .field__input--invalid {
+    @apply border-danger/70;
+  }
+
+  .field__input--invalid:focus {
+    @apply border-danger;
+  }
+
+  .field__input--invalid:focus-visible {
+    @apply ring-danger/25;
+  }
+
+  /* Linha abaixo do campo: erro/dica à esquerda, contador à direita */
+  .field__meta {
+    @apply mt-1.5 flex items-start gap-3 text-micro;
+  }
+
+  .field__error {
+    @apply text-danger;
+  }
+
+  .field__hint {
+    @apply text-text-muted;
+  }
+
+  .field__counter {
+    @apply tabular-nums text-text-muted;
+  }
+
+  .field__counter:not(:first-child) {
+    @apply ml-auto;
+  }
+
+  /* --- SegmentedControl (radios nativos escondidos + rótulos como botões) --- */
+  .seg {
+    @apply grid gap-1 rounded-xl border border-white/[0.06] bg-rail p-1;
+    grid-template-columns: repeat(var(--seg-columns, 1), minmax(0, 1fr));
+  }
+
+  .seg__option {
+    @apply relative min-w-0;
+  }
+
+  .seg__input {
+    @apply sr-only;
+  }
+
+  .seg__label {
+    @apply flex w-full min-w-0 cursor-pointer select-none items-center justify-center gap-1.5 rounded-lg px-3 font-medium text-text-secondary transition duration-150 ease-out;
+  }
+
+  .seg--sm .seg__label {
+    @apply h-7 text-[11px];
+  }
+
+  .seg--md .seg__label {
+    @apply h-9 text-xs;
+  }
+
+  .seg__text {
+    @apply truncate;
+  }
+
+  .seg__icon {
+    @apply h-3.5 w-3.5 shrink-0;
+  }
+
+  .seg__label:hover {
+    @apply text-text;
+  }
+
+  .seg__input:checked + .seg__label {
+    @apply bg-surface-3 text-text shadow-sm;
+  }
+
+  .seg__input:focus-visible + .seg__label {
+    @apply ring-2 ring-inset ring-primary/60;
+  }
+
+  .seg__input:disabled + .seg__label {
+    @apply cursor-not-allowed opacity-50;
+  }
+}
