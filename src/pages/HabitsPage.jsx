@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Flame, Plus } from 'lucide-react';
 import { useHabits } from '../context/HabitsContext.jsx';
-import { useToast } from '../context/ToastContext.jsx';
 import PageHeader from '../components/ui/PageHeader.jsx';
 import Button from '../components/ui/Button.jsx';
 import EmptyState from '../components/ui/EmptyState.jsx';
@@ -9,7 +8,6 @@ import ConfirmDialog from '../components/ui/ConfirmDialog.jsx';
 import ConsistencyBar from '../components/habits/ConsistencyBar.jsx';
 import HabitTable from '../components/habits/HabitTable.jsx';
 import HabitModal from '../components/habits/HabitModal.jsx';
-import { MESSAGES } from '../utils/constants.js';
 
 export default function HabitsPage() {
   const {
@@ -23,7 +21,6 @@ export default function HabitsPage() {
     deleteHabit,
     toggleDay,
   } = useHabits();
-  const { showToast } = useToast();
 
   const [modal, setModal] = useState({ open: false, habit: null });
   const [habitToDelete, setHabitToDelete] = useState(null);
@@ -32,20 +29,18 @@ export default function HabitsPage() {
   const openEdit = (habit) => setModal({ open: true, habit });
   const closeModal = () => setModal((m) => ({ ...m, open: false }));
 
+  // O toast de sucesso é emitido pelo HabitsContext (fonte única das mutações).
   const handleSubmit = (values) => {
     if (modal.habit) {
       updateHabit(modal.habit.id, values);
-      showToast(MESSAGES.habits.updated, 'success');
     } else {
       addHabit(values);
-      showToast(MESSAGES.habits.created, 'success');
     }
     closeModal();
   };
 
   const confirmDelete = () => {
     deleteHabit(habitToDelete.id);
-    showToast(MESSAGES.habits.deleted, 'success');
     setHabitToDelete(null);
   };
 

@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import { useNotes } from '../context/NotesContext.jsx';
-import { useToast } from '../context/ToastContext.jsx';
 import ConfirmDialog from '../components/ui/ConfirmDialog.jsx';
 import NotesPanel from '../components/notes/NotesPanel.jsx';
 import NoteReader from '../components/notes/NoteReader.jsx';
 import NoteEditorForm from '../components/notes/NoteEditorForm.jsx';
 import NoteModal from '../components/notes/NoteModal.jsx';
 import { formatNoteEditedLabel } from '../utils/date.js';
-import { MESSAGES } from '../utils/constants.js';
 
 export default function NotesPage() {
   const { notes, selectedNote, selectNote, addNote, updateNote, deleteNote, wordCountOf } = useNotes();
-  const { showToast } = useToast();
 
   const [createOpen, setCreateOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -24,19 +21,18 @@ export default function NotesPage() {
     setMobileDetail(true);
   };
 
+  // Os toasts de sucesso são emitidos pelo NotesContext (fonte única das mutações).
   const handleCreate = ({ title, notebook, content }) => {
     const note = addNote({ title, notebook, content });
     selectNote(note.id); // RN-34: nova nota é selecionada automaticamente
     setCreateOpen(false);
     setIsEditing(false);
     setMobileDetail(true);
-    showToast(MESSAGES.notes.created, 'success');
   };
 
   const handleSave = (patch) => {
     updateNote(selectedNote.id, patch); // atualiza updatedAt e reordena a lista (RN-39)
     setIsEditing(false);
-    showToast(MESSAGES.notes.saved, 'success');
   };
 
   const handleDelete = () => {
@@ -44,7 +40,6 @@ export default function NotesPage() {
     setConfirmDeleteOpen(false);
     setIsEditing(false);
     setMobileDetail(false);
-    showToast(MESSAGES.notes.deleted, 'success');
   };
 
   const detailVisibility = mobileDetail ? 'flex' : 'hidden min-[900px]:flex';

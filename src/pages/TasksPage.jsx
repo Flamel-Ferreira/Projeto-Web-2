@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
 import { useTasks } from '../context/TasksContext.jsx';
-import { useToast } from '../context/ToastContext.jsx';
 import PageHeader from '../components/ui/PageHeader.jsx';
 import Button from '../components/ui/Button.jsx';
 import ConfirmDialog from '../components/ui/ConfirmDialog.jsx';
 import TaskBoard from '../components/tasks/TaskBoard.jsx';
 import TaskModal from '../components/tasks/TaskModal.jsx';
-import { MESSAGES, TASK_STATUS, formatTaskSummary } from '../utils/constants.js';
+import { TASK_STATUS, formatTaskSummary } from '../utils/constants.js';
 
 export default function TasksPage() {
   const { tasks, counts, addTask, deleteTask, toggleComplete, moveTask } = useTasks();
-  const { showToast } = useToast();
 
   const [modal, setModal] = useState({ open: false, status: TASK_STATUS.todo });
   const [taskToDelete, setTaskToDelete] = useState(null);
@@ -19,15 +17,14 @@ export default function TasksPage() {
   const openModal = (status = TASK_STATUS.todo) => setModal({ open: true, status }); // RN-14
   const closeModal = () => setModal((m) => ({ ...m, open: false }));
 
+  // O toast de sucesso é emitido pelo TasksContext (fonte única das mutações).
   const handleSubmit = (values) => {
     addTask(values);
-    showToast(MESSAGES.tasks.created, 'success');
     closeModal();
   };
 
   const confirmDelete = () => {
     deleteTask(taskToDelete.id); // RN-18: o contexto limpa o currentTaskId do Pomodoro
-    showToast(MESSAGES.tasks.deleted, 'success');
     setTaskToDelete(null);
   };
 
